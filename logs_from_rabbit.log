@@ -1,0 +1,7 @@
+=INFO REPORT==== 29-Jun-2018::15:49:43.357076 ===
+    application: logger
+    exited: stopped
+    type: temporary
+ [*] Waiting for messages. To exit press CTRL+C, CTRL+C
+ [x] Received Hello, world!
+ [x] Received Hello, world!
