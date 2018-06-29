@@ -23,3 +23,5 @@ erl_crash.dump
 rabbitmq_tutorials-*.tar
 
 *.log
+
+/.elixir_ls/
