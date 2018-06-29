@@ -2,13 +2,13 @@ defmodule ReceiveLogs do
   def wait_for_messages(channel) do
     receive do
       {:basic_deliver, payload, _meta} ->
-        IO.puts " [x] Received #{payload}"
+        IO.puts(" [x] Received #{payload}")
         wait_for_messages(channel)
     end
   end
 end
 
-{:ok, connection} = AMQP.Connection.open
+{:ok, connection} = AMQP.Connection.open()
 {:ok, channel} = AMQP.Channel.open(connection)
 
 AMQP.Exchange.declare(channel, "logs", :fanout)
@@ -17,6 +17,6 @@ AMQP.Exchange.declare(channel, "logs", :fanout)
 AMQP.Queue.bind(channel, queue_name, "logs")
 AMQP.Basic.consume(channel, queue_name, nil, no_ack: true)
 
-IO.puts " [*] Waiting for messages. To exit press CTRL+C, CTRL+C"
+IO.puts(" [*] Waiting for messages. To exit press CTRL+C, CTRL+C")
 
 ReceiveLogs.wait_for_messages(channel)
